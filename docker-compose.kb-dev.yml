@@ -4,6 +4,7 @@ volumes:
   solr_data:
   pip_cache:
   site_packages:
+  local_bin:
   vscode_server:
   caddy_data:
   caddy_config:
@@ -28,14 +29,13 @@ services:
         - TZ=${TZ}
     env_file:
       - .env
-
     expose:
       - "5000"
     volumes:
       - ckan_storage:/var/lib/ckan
       - ./src:/srv/app/src_extensions
       - pip_cache:/root/.cache/pip
-      - site_packages:/usr/lib/python3.10/site-packages
+      - site_packages:/usr/local/lib/python3.10/site-packages
       - vscode_server:/root/.vscode-server
     restart: unless-stopped
     healthcheck:
